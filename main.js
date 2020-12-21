@@ -23,9 +23,9 @@ const path = require('path');
  * to unequivocally locate the file module.
  */
 const { getIpv4MappedIpv6Address } = require(path.join(__dirname, 'ipv6.js'));
-//const { getIpv4MappedIpv6Address } = require(path.join('blob/master', './ipv6.js'));
 
 
+/**
  * Calculate and return the first host IP address from a CIDR subnet.
  * @param {string} cidrStr - The IPv4 subnet expressed
  *                 in CIDR format.
