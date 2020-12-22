@@ -71,7 +71,7 @@ class IpAddress {
         // If the passed CIDR is valid, call the object's toArray() method.
         // Notice the destructering assignment syntax to get the value of the first array's element.
         [firstIpAddress] = cidr.toArray(options);
-    firstIpAddress.ipv6 = getIpv4MappedIpv6Address(furstIpaddress.ipv4);
+    firstIpAddress.ipv6 = getIpv4MappedIpv6Address(firstIpaddress.ipv4);
     }
     return callback(firstIpAddress, callbackError);
     }
