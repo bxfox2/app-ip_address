@@ -25,7 +25,7 @@ const path = require ('path');
 * to unequivocally locate the file module.
 */
 const { getIpv4MappedIpv6Address } = require(path.join(__dirname, 'ipv6.js'));
-
+//const { getIpv4MappedIpv6Address } = require(path.join('blob/master', './ipv6.js'));
 
 
 
@@ -63,7 +63,7 @@ class IpAddress {
         limit: 1
     };
     
-    // Use the object's isValid() method to verify the passed CIDR.
+    // Use the object's is Valid() method to verify the passed CIDR.
     if (!cidr.isValid()) {
         // If the passed CIDR is invalid, set an error message.
         callbackError = 'Error: Invalid CIDR passed to getFirstIpAddress.';
