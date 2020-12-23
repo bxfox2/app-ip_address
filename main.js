@@ -30,6 +30,7 @@ const { getIpv4MappedIpv6Address } = require(path.join(__dirname, 'ipv6.js'));
 
 
 
+
 class IpAddress {
   constructor() {
     // IAP's global log object is used to output errors, warnings, and other
@@ -63,7 +64,7 @@ class IpAddress {
         limit: 1
     };
     
-    // Use the object's is Valid() method to verify the passed CIDR.
+    // Use the object's isValid() method to verify the passed CIDR.
     if (!cidr.isValid()) {
         // If the passed CIDR is invalid, set an error message.
         callbackError = 'Error: Invalid CIDR passed to getFirstIpAddress.';
@@ -81,18 +82,12 @@ class IpAddress {
         ipv4MappedIpv6 = (`"IPv4":"${firstIpAddress}" , "IPv6":"` + getIpv4MappedIpv6Address(firstIpAddress) +'"');
         }
 
-  // Call the passed callback function.
-  // Node.js convention is to pass error data as the first argument to a callback.
-  // The IAP convention is to pass returned data as the first argument and error
-  // data as the second argument to the callback function.
-  return callback(ipv4MappedIpv6, callbackError);
-  }
-
-/**
-* Calculates an IPv4-mapped IPv6 address.
-* @param {string} ipv4 - An IPv4 address in dotted-quad format.
-* @return {*} (ipv6Address) - An IPv6 address string or null if a run-time problem was detected.
-*/
+    // Call the passed callback function.
+    // Node.js convention is to pass error data as the first argument to a callback.
+    // The IAP convention is to pass returned data as the first argument and error
+    // data as the second argument to the callback function.
+    return callback(ipv4MappedIpv6, callbackError);
+    }
 
 }
 
