@@ -25,7 +25,7 @@ const path = require ('path');
 * to unequivocally locate the file module.
 */
 const { getIpv4MappedIpv6Address } = require(path.join(__dirname, 'ipv6.js'));
-//const { getIpv4MappedIpv6Address } = require(path.join('blob/master', './ipv6.js'));
+
 
 
 
