@@ -15,6 +15,7 @@ const IPCIDR = require('ip-cidr');
   Assign the imported object to variable path.
 */
 const path = require('path');
+//const path = require('https://github.com/bxfox2/app-ip_address/');
 
 /**
  * Import helper function module located in the same directory
@@ -22,6 +23,7 @@ const path = require('path');
  * to unequivocally locate the file module.
  */
 const { getIpv4MappedIpv6Address } = require(path.join(__dirname, 'ipv6.js'));
+//const { getIpv4MappedIpv6Address } = require(path.join('blob/master', './ipv6.js'));
 
 
 class IpAddress {
@@ -73,10 +75,10 @@ class IpAddress {
     // Calling the getIpv4MappedIpv6Address() to calculate the IPv4-mapped IPv6 address for the passed IPv4 address.
     let ipv4MappedIpv6 = null;
     if (!cidr.isValid()) {
-      ipv4MappedIpv6 = (`ipv4':"${firstIpAddress}" , "IPv6":"${ipv4MappedIpv6}"`)
+      ipv4MappedIpv6 = (`ipv4:${firstIpAddress} , "IPv6":"${ipv4MappedIpv6}"`)
     } else 
     {
-       ipv4MappedIpv6 = (`ipv4':"${firstIpAddress}" , "IPv6":"` + getIpv4MappedIpv6Address(firstIpAddress) +'"');
+       ipv4MappedIpv6 = (`ipv4:${firstIpAddress} , "IPv6":"` + getIpv4MappedIpv6Address(firstIpAddress) +'"');
     }
   
 
