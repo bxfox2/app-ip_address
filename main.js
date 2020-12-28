@@ -102,7 +102,7 @@ getFirstIpAddress(cidrStr, callback) {
 
  */
 
-function getFirstIpAddress(cidrStr, callback) {
+getFirstIpAddress(cidrStr, callback) {
 
 
 
