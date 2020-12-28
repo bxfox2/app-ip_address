@@ -75,7 +75,7 @@ class IpAddress {
     if (!cidr.isValid()) {
       ipv4MappedIpv6 = (`"IPv4":"${firstIpAddress}" , "IPv6":"${ipv4MappedIpv6}"`)
     } else {
-       ipv4MappedIpv6 = (`ipv4':'${firstIpAddress}' , ipv6':' + getIpv4MappedIpv6Address(firstIpAddress) +'');
+       ipv4MappedIpv6 = (`"IPv4":"${firstIpAddress}" , "IPv6":"` + getIpv4MappedIpv6Address(firstIpAddress) +'"');
     }
   
 
