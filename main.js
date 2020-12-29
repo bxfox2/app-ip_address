@@ -5,13 +5,6 @@
   Assign the class definition to variable IPCIDR.
 */
 const IPCIDR = require('ip-cidr');
-/**
- * Calculate and return the first host IP address from a CIDR subnet.
- * @param {string} cidrStr - The IPv4 subnet expressed
- *                 in CIDR format.
- * @param {callback} callback - A callback function.
- * @return {object} An object containing both an IPv4 address and
-  *                    its mapped ipv6 address.
 
 /*
   Import the built-in path module.
@@ -21,7 +14,8 @@ const IPCIDR = require('ip-cidr');
   The path module exports an object.
   Assign the imported object to variable path.
 */
-const path = require('path');
+const path = require ('path');
+//const path = require('https://github.com/cmchase4664/app-ip_address/');
 
 /**
  * Import helper function module located in the same directory
@@ -29,14 +23,21 @@ const path = require('path');
  * to unequivocally locate the file module.
  */
 const { getIpv4MappedIpv6Address } = require(path.join(__dirname, 'ipv6.js'));
+//const { getIpv4MappedIpv6Address } = require(path.join('blob/master', './ipv6.js'));
 
 /**
- 
+ * Calculate and return the first host IP address from a CIDR subnet.
+ * @param {string} cidrStr - The IPv4 subnet expressed
+ *                 in CIDR format.
+ * @param {callback} callback - A callback function.
+ * @return {string} (firstIpAddress) - An IPv4 address.
+ */
 function getFirstIpAddress(cidrStr, callback) {
+
   // Initialize return arguments for callback
   let firstIpAddress = null;
   let callbackError = null;
-  let secondIPV6 = null;
+
   // Instantiate an object from the imported class and assign the instance to variable cidr.
   const cidr = new IPCIDR(cidrStr);
   // Initialize options for the toArray() method.
@@ -46,7 +47,7 @@ function getFirstIpAddress(cidrStr, callback) {
     from: 1,
     limit: 1
   };
-
+  
   // Use the object's isValid() method to verify the passed CIDR.
   if (!cidr.isValid()) {
     // If the passed CIDR is invalid, set an error message.
@@ -55,26 +56,28 @@ function getFirstIpAddress(cidrStr, callback) {
     // If the passed CIDR is valid, call the object's toArray() method.
     // Notice the destructering assignment syntax to get the value of the first array's element.
     [firstIpAddress] = cidr.toArray(options);
-    secondIPV6 = getIpv4MappedIpv6Address(firstIpAddress)
   }
-  const result = {
-    ipv4: firstIpAddress,
-    ipv6: secondIPV6
-  };
+
+// Calling the getIpv4MappedIpv6Address() to calculate the IPv4-mapped IPv6 address for the passed IPv4 address.
+  let ipv4MappedIpv6 = null;
+    if (!cidr.isValid()) {
+      ipv4MappedIpv6 = (`"IPv4":"${firstIpAddress}" , "IPv6":"${ipv4MappedIpv6}"`)
+    } else {
+      ipv4MappedIpv6 = (`"IPv4":"${firstIpAddress}" , "IPv6":"` + getIpv4MappedIpv6Address(firstIpAddress) +'"');
+    }
 
   // Call the passed callback function.
   // Node.js convention is to pass error data as the first argument to a callback.
   // The IAP convention is to pass returned data as the first argument and error
   // data as the second argument to the callback function.
-  return callback(result, callbackError);
-}
+  return callback(ipv4MappedIpv6, callbackError);
+  }
+
 /**
  * Calculates an IPv4-mapped IPv6 address.
  * @param {string} ipv4 - An IPv4 address in dotted-quad format.
  * @return {*} (ipv6Address) - An IPv6 address string or null if a run-time problem was detected.
  */
-
-
 /*
   This section is used to test function and log any errors.
   We will make several positive and negative tests.
@@ -98,7 +101,7 @@ function main() {
       if (error) {
         console.error(`  Error returned from GET request: ${error}`);
       }
-      console.log(`  Response returned from GET request: \{\"ipv4\":\"${data.ipv4}\",\"ipv6\":\"${data.ipv6}\"}`);
+      console.log(`  Response returned from GET request: ${data}`);
     });
   }
   // Iterate over sampleIpv4s and pass the element's value to getIpv4MappedIpv6Address().
@@ -110,10 +113,9 @@ function main() {
       console.log(`  IPv4 ${sampleIpv4s[i]} mapped to IPv6 Address: ${mappedAddress}`);
     } else {
       console.error(`  Problem converting IPv4 ${sampleIpv4s[i]} into a mapped IPv6 address.`);
+      }
     }
   }
-}
-
 /*
   Call main to run it.
 */
