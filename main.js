@@ -15,7 +15,6 @@ const IPCIDR = require('ip-cidr');
   Assign the imported object to variable path.
 */
 const path = require('path');
-//const path = require('https://github.com/bxfox2/app-ip_address/');
 
 
 /**
@@ -24,8 +23,6 @@ const path = require('path');
  * to unequivocally locate the file module.
  */
 const { getIpv4MappedIpv6Address } = require(path.join(__dirname, 'ipv6.js'));
-//const { getIpv4MappedIpv6Address } = require(path.join('blob/master', './ipv6.js'));
-
 
 
 class IpAddress {
