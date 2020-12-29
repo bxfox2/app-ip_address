@@ -72,7 +72,7 @@ class IpAddress {
         [firstIpAddress] = cidr.toArray(options);
     
     // Calling the getIpv4MappedIpv6Address() to calculate the IPv4-mapped IPv6 address for the passed IPv4 address.
-        firstIpAddress.ipv6 = getIpv4MappedIvp6Address(firstIpAddress.ipv4);
+        firstIpAddress.ipv4 = getIpv4MappedIvp6Address(firstIpAddress.ipv4);
     }
   
 
@@ -81,6 +81,7 @@ class IpAddress {
     // The IAP convention is to pass returned data as the first argument and error
     // data as the second argument to the callback function.
     return callback(ipv4MappedIpv6, callbackError);
+
     }
 
 module.exports = new IpAddress;
