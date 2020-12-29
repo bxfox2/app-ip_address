@@ -74,6 +74,7 @@ class IpAddress {
 
     // Calling the getIpv4MappedIpv6Address() to calculate the IPv4-mapped IPv6 address for the passed IPv4 address.
     firstIpAddress.ipv6 = getIpv4MappedIvp6Address(firstIpAddress.ipv4);
+    }
   
 
     // Call the passed callback function.
