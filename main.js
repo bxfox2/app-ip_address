@@ -70,8 +70,7 @@ class IpAddress {
         // If the passed CIDR is valid, call the object's toArray() method.
         // Notice the destructering assignment syntax to get the value of the first array's element.
         [firstIpAddress] = cidr.toArray(options);
-    }
-
+    
     // Calling the getIpv4MappedIpv6Address() to calculate the IPv4-mapped IPv6 address for the passed IPv4 address.
     firstIpAddress.ipv6 = getIpv4MappedIvp6Address(firstIpAddress.ipv4);
     }
@@ -83,6 +82,5 @@ class IpAddress {
     // data as the second argument to the callback function.
     return callback(ipv4MappedIpv6, callbackError);
     }
-}
 
 module.exports = new IpAddress;
