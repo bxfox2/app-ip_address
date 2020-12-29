@@ -78,7 +78,6 @@ class IpAddress {
     // The IAP convention is to pass returned data as the first argument and error
     // data as the second argument to the callback function.
     return callback(ipv4MappedIpv6, callbackError);
-        }
     }
 
 module.exports = new IpAddress;
