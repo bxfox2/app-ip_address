@@ -15,7 +15,6 @@ const IPCIDR = require('ip-cidr');
   Assign the imported object to variable path.
 */
 const path = require('path');
-//const path = require('https://github.com/bxfox2/app-ip_address/');
 
 /**
  * Import helper function module located in the same directory
@@ -23,7 +22,6 @@ const path = require('path');
  * to unequivocally locate the file module.
  */
 const { getIpv4MappedIpv6Address } = require(path.join(__dirname, 'ipv6.js'));
-//const { getIpv4MappedIpv6Address } = require(path.join('blob/master', 'ipv6.js'));
 
 
 class IpAddress {
@@ -61,7 +59,6 @@ class IpAddress {
         from: 1,
         limit: 1
     };
-    let ipv4MappedIpv6 = null;
 
     // Use the object's isValid() method to verify the passed CIDR.
     if (!cidr.isValid()) {
@@ -71,16 +68,22 @@ class IpAddress {
         // If the passed CIDR is valid, call the object's toArray() method.
         // Notice the destructering assignment syntax to get the value of the first array's element.
         [firstIpAddress] = cidr.toArray(options);
-        (firstIpAddress.ipv6) = getIpv4MappedIvp6Address(firstIpAddress.ipv4);
     }
 
-      
+    // Calling the getIpv4MappedIpv6Address() to calculate the IPv4-mapped IPv6 address for the passed IPv4 address.
+    let ipv4MappedIpv6 = null;
+    if (!cidr.isValid()) {
+      ipv4MappedIpv6 = (`"IPv4":"${firstIpAddress}" , "IPv6":"${ipv4MappedIpv6}"`)
+    } else {
+      ipv4MappedIpv6 = (`"IPv4":"${firstIpAddress}" , "IPv6":"` + getIpv4MappedIpv6Address(firstIpAddress) +'"');
+    }
+  
 
     // Call the passed callback function.
     // Node.js convention is to pass error data as the first argument to a callback.
     // The IAP convention is to pass returned data as the first argument and error
     // data as the second argument to the callback function.
-    return callback(firstIpAddress, callbackError);
+    return callback(ipv4MappedIpv6, callbackError);
     }
 }
 
