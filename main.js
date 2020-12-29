@@ -61,7 +61,7 @@ class IpAddress {
     // This returns an array with a single element, the first host address from the subnet.
     const options = {
         from: 1,
-        limit: 1
+        limit: 1,
     };
 
     // Use the object's isValid() method to verify the passed CIDR.
@@ -69,13 +69,10 @@ class IpAddress {
         // If the passed CIDR is invalid, set an error message.
         callbackError = 'Error: Invalid CIDR passed to getFirstIpAddress.';
     } else {
-        // If the passed CIDR is valid, call the object's toArray() method.
-        // Notice the destructering assignment syntax to get the value of the first array's element.
         [firstIpAddress] = cidr.toArray(options);
-    
-    // Calling the getIpv4MappedIpv6Address() to calculate the IPv4-mapped IPv6 address for the passed IPv4 address.
         firstIpAddress.ipv6 = getIpv4MappedIpv6Address(firstIpAddress.ipv4);
-    }
+        }
+
   
 
     // Call the passed callback function.
@@ -83,7 +80,6 @@ class IpAddress {
     // The IAP convention is to pass returned data as the first argument and error
     // data as the second argument to the callback function.
     return callback(ipv4MappedIpv6, callbackError);
-
     }
 
 module.exports = new IpAddress;
