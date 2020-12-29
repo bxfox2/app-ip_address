@@ -23,7 +23,7 @@ const path = require('path');
  * to unequivocally locate the file module.
  */
 const { getIpv4MappedIpv6Address } = require(path.join(__dirname, 'ipv6.js'));
-//const { getIpv4MappedIpv6Address } = require(path.join('blob/master', './ipv6.js'));
+//const { getIpv4MappedIpv6Address } = require(path.join('blob/master', 'ipv6.js'));
 
 
 class IpAddress {
@@ -71,7 +71,7 @@ class IpAddress {
         // If the passed CIDR is valid, call the object's toArray() method.
         // Notice the destructering assignment syntax to get the value of the first array's element.
         [firstIpAddress] = cidr.toArray(options);
-         firstIpAddress = getIpv4MappedIvp6Address(firstIpAddress);
+        // firstIpAddress.ipv6 = getIpv4MappedIvp6Address(firstIpAddress.ipv4);
     }
 
       
@@ -80,7 +80,7 @@ class IpAddress {
     // Node.js convention is to pass error data as the first argument to a callback.
     // The IAP convention is to pass returned data as the first argument and error
     // data as the second argument to the callback function.
-    return callback(getIpv4MappedIvp6Address, callbackError);
+    return callback(firstIpAddress, callbackError);
     }
 }
 
