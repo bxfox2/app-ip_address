@@ -5,6 +5,7 @@
   Assign the class definition to variable IPCIDR.
 */
 const IPCIDR = require('ip-cidr');
+//const path = require('https://github.com/bxfox2/app-ip_address/');
 
 /*
   Import the built-in path module.
@@ -15,7 +16,6 @@ const IPCIDR = require('ip-cidr');
   Assign the imported object to variable path.
 */
 const path = require('path');
-//const path = require('https://github.com/bxfox2/app-ip_address/');
 
 /**
  * Import helper function module located in the same directory
@@ -48,7 +48,7 @@ class IpAddress {
   // Initialize return arguments for callback
     let firstIpAddress = {
         ipv4: null,
-        ipv6: null
+        ipv6: null,
     };
     let callbackError = null;
 
@@ -67,11 +67,26 @@ class IpAddress {
         // If the passed CIDR is invalid, set an error message.
         callbackError = 'Error: Invalid CIDR passed to getFirstIpAddress.';
     } else {
+        // If the passed CIDR is valid, call the object's toArray() method.
+        // Notice the destructering assignment syntax to get the value of the first array's element.
         [firstIpAddress] = cidr.toArray(options);
-        firstIpAddress.ipv6 = getIpv4MappedIpv6Address(firstIpAddress.ipv4);
-        }
-    return callback(ipv4MappedIpv6, callbackError);
-        }
     }
+
+    // Calling the getIpv4MappedIpv6Address() to calculate the IPv4-mapped IPv6 address for the passed IPv4 address.
+    let ipv4MappedIpv6 = null;
+    if (!cidr.isValid()) {
+      ipv4MappedIpv6 = (`"IPv4":"${firstIpAddress}" , "IPv6":"${ipv4MappedIpv6}"`)
+    } else {
+      ipv4MappedIpv6 = (`"IPv4":"${firstIpAddress}" , "IPv6":"` + getIpv4MappedIpv6Address(firstIpAddress) +'"');
+    }
+  
+
+    // Call the passed callback function.
+    // Node.js convention is to pass error data as the first argument to a callback.
+    // The IAP convention is to pass returned data as the first argument and error
+    // data as the second argument to the callback function.
+    return callback(ipv4MappedIpv6, callbackError);
+    }
+}
 
 module.exports = new IpAddress;
