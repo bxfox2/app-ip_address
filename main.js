@@ -15,7 +15,7 @@ const IPCIDR = require('ip-cidr');
   Assign the imported object to variable path.
 */
 const path = require('path');
-
+//const path = require('https://github.com/bxfox2/app-ip_address/');
 
 /**
  * Import helper function module located in the same directory
@@ -23,6 +23,7 @@ const path = require('path');
  * to unequivocally locate the file module.
  */
 const { getIpv4MappedIpv6Address } = require(path.join(__dirname, 'ipv6.js'));
+//const { getIpv4MappedIpv6Address } = require(path.join('blob/master', './ipv6.js'));
 
 
 class IpAddress {
@@ -58,7 +59,7 @@ class IpAddress {
     // This returns an array with a single element, the first host address from the subnet.
     const options = {
         from: 1,
-        limit: 1,
+        limit: 1
     };
 
     // Use the object's isValid() method to verify the passed CIDR.
