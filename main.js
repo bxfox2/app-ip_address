@@ -39,7 +39,10 @@ class IpAddress {
     * @param {string} cidrStr - The IPv4 subnet expressed
     *                 in CIDR format.
     * @param {callback} callback - A callback function.
-    * @return {object} (firstIpAddress) - An IPv4 address.
+    * @return {object} (firstIpAddress) - An object with two properties, ipv4 and ipv6, 
+                                        whose values are strings, the ipv4 property will be a 
+                                        dotted-quad IPv4 address, such as 10.10.10.1. The IPv6
+                                        property will be an IPv6 address, such as 0:0:0:0:00:ffff:0a0a:0a01.
     */
     getFirstIpAddress(cidrStr, callback) {
 
