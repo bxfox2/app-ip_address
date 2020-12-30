@@ -1,14 +1,3 @@
-  // Call the passed callback function.
-  // Node.js convention is to pass error data as the first argument to a callback.
-  // The IAP convention is to pass returned data as the first argument and error
-  // data as the second argument to the callback function.
-  return callback(result, callbackError);
-}
-/**
- * Calculates an IPv4-mapped IPv6 address.
- * @param {string} ipv4 - An IPv4 address in dotted-quad format.
- * @return {*} (ipv6Address) - An IPv6 address string or null if a run-time problem was detected.
- */
 function getIpv4MappedIpv6Address(ipv4) {
 
   // Initialize return argument
@@ -52,4 +41,5 @@ if (numIpv4Segments === 4) {
   }
   return ipv6Address;
 }
+
 module.exports.getIpv4MappedIpv6Address = getIpv4MappedIpv6Address;
