@@ -46,7 +46,7 @@ class IpAddress {
   // Initialize return arguments for callback
     let firstIpAddress = {
         ipv4: null,
-        ipv6: null,
+        ipv6: null
     };
     let callbackError = null;
 
@@ -77,7 +77,6 @@ class IpAddress {
     // The IAP convention is to pass returned data as the first argument and error
     // data as the second argument to the callback function.
     return callback(firstIpAddress, callbackError);
-    }
 }
 
 module.exports = new IpAddress;
